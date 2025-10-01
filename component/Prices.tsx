@@ -10,6 +10,27 @@ const Pricing = () => {
 
   const plans = [
     {
+      id: 'free',
+      name: 'Free',
+      subtitle: 'Up to 6 Products',
+      price: '₹0',
+      period: 'forever',
+      description: 'Perfect for getting started with your online presence',
+      features: [
+        'Up to 6 product listings',
+        'WhatsApp ordering system',
+        'Admin panel for management',
+        'Mobile-responsive design',
+        'Easy product management',
+        'Easy store management',
+        'No technical skill required',
+        'QR code generation in the admin panel',
+        'Link list feature (like Linktree)'
+      ],
+      tier: 0,
+      popular: false
+    },
+    {
       id: 'basic',
       name: 'Basic',
       subtitle: 'Up to 50 Products',
@@ -61,7 +82,7 @@ const Pricing = () => {
       features: [
         'Unlimited product listings',
         'Online payment gateway integration',
-        'Support for UPI, cards, wallets, etc.',
+        'Support for UPI, cards, wallets.',
         'Customers can pay directly online',
         'Standard e-commerce functionality',
         'Custom design and branding',
@@ -135,7 +156,7 @@ const Pricing = () => {
         </div>
 
         {/* Pricing Plans */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-16">
           {plans.map((plan) => {
             const colors = getColorClasses();
             const isSelected = selectedPlan === plan.id;
@@ -200,7 +221,9 @@ const Pricing = () => {
                   <button 
                     className={`w-full ${colors.button} text-white px-4 py-2.5 rounded-lg font-medium transition-colors duration-300 shadow-sm hover:shadow-md text-sm`}
                     onClick={() => {
-                      if (plan.id === 'basic') {
+                      if (plan.id === 'free') {
+                        redirectToWhatsApp(WhatsAppMessages.SUBSCRIPTION_STORE);
+                      } else if (plan.id === 'basic') {
                         redirectToWhatsApp(WhatsAppMessages.SUBSCRIPTION_STORE);
                       } else if (plan.id === 'standard') {
                         redirectToWhatsApp(WhatsAppMessages.SUBSCRIPTION_STORE);
